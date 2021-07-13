@@ -18,8 +18,8 @@ from email import encoders
 def SendReport():
 	
 	#from and to emails
-	fromaddr = "piraspberry668@gmail.com"
-	toaddr = "gsauls3421@gmail.com"
+	fromaddr = "sender email"
+	toaddr = "reciever email"
 	
 	#object from MIME library
 	msg = MIMEMultipart()
@@ -55,7 +55,7 @@ def SendReport():
 	#server communication and log in
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.starttls()
-	server.login(fromaddr, "Raspberry123!")
+	server.login(fromaddr, "sender email password")
 	text = msg.as_string()
 	server.sendmail(fromaddr, toaddr, text)
 	server.quit()
@@ -89,7 +89,7 @@ def Sensor():
 	#while True:
 
 		#try:
-	dailyReport  = 0
+
 	print("waiting for PIR to settle...")
         
 	# Loop until PIR output is 0
@@ -100,6 +100,8 @@ def Sensor():
 	while True:
 
 		try:
+			dailyReport  = 0
+
 			#setting date and time
 			today = datetime.today()
 			todaysDate = today.strftime("%m/%d/%y")
@@ -125,11 +127,11 @@ def Sensor():
 			
 			now = datetime.now()
 			current_hour = now.strftime("%H")
-			print("current hour is" + current_hour)
+			#print("current hour is" + current_hour)
 
 
 			#Loop until user quits with CTRL-C
-			while int(current_hour) > 6 and int(current_hour) < 17:
+			while int(current_hour) > 6 and int(current_hour) < 18:
 
 				#Read PIR state
 				current_state = GPIO.input(GPIO_PIR)
